@@ -15,9 +15,9 @@ phases:
 
   post_build:
     commands:
-      - echo "Distribution ID is: $CLOUDFRONT_DIST_ID"
+      - echo "Distribution ID is: ${CLOUDFRONT_DIST_ID}"
       - echo "Creating CloudFront invalidation..."
-      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths "/index.html"
+      - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DIST_ID} --paths "/index.html"
 
 artifacts:
   base-directory: dist
