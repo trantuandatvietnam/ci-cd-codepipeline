@@ -100,7 +100,7 @@ function App() {
 
   return (
     <div className="game-container">
-      <h1>🧠 Color Memory Game</h1>
+      <h1>🧠 Memory Game</h1>
 
       <div className="game-info">
         <div className="score">Score: {score}</div>
