@@ -2,15 +2,21 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 const COLORS = [
-  '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', 
-  '#FFEAA7', '#DDA0DD', '#98D8C8', '#FFB347'
+  "#FF6B6B",
+  "#4ECDC4",
+  "#45B7D1",
+  "#96CEB4",
+  "#FFEAA7",
+  "#DDA0DD",
+  "#98D8C8",
+  "#FFB347",
 ];
 
 const GAME_STATES = {
-  IDLE: 'idle',
-  SHOWING: 'showing',
-  PLAYING: 'playing',
-  GAME_OVER: 'game_over'
+  IDLE: "idle",
+  SHOWING: "showing",
+  PLAYING: "playing",
+  GAME_OVER: "game_over",
 };
 
 function App() {
@@ -39,7 +45,7 @@ function App() {
   const showSequenceToPlayer = (seq) => {
     setGameState(GAME_STATES.SHOWING);
     setShowSequence(true);
-    
+
     seq.forEach((color, index) => {
       setTimeout(() => {
         setActiveColor(color);
@@ -64,8 +70,8 @@ function App() {
     setTimeout(() => setActiveColor(null), 200);
 
     // Check if the player's sequence matches so far
-    const isCorrect = newPlayerSequence.every((playerColor, index) => 
-      playerColor === sequence[index]
+    const isCorrect = newPlayerSequence.every(
+      (playerColor, index) => playerColor === sequence[index]
     );
 
     if (!isCorrect) {
@@ -95,14 +101,16 @@ function App() {
   return (
     <div className="game-container">
       <h1>🧠 Color Memory Game</h1>
-      
+
       <div className="game-info">
         <div className="score">Score: {score}</div>
         <div className="status">
           {gameState === GAME_STATES.IDLE && "Press Start to begin!"}
           {gameState === GAME_STATES.SHOWING && "Watch the sequence..."}
-          {gameState === GAME_STATES.PLAYING && "Your turn! Click the colors in order"}
-          {gameState === GAME_STATES.GAME_OVER && `Game Over! Final Score: ${score}`}
+          {gameState === GAME_STATES.PLAYING &&
+            "Your turn! Click the colors in order"}
+          {gameState === GAME_STATES.GAME_OVER &&
+            `Game Over! Final Score: ${score}`}
         </div>
       </div>
 
@@ -110,11 +118,11 @@ function App() {
         {COLORS.map((color, index) => (
           <button
             key={index}
-            className={`color-button ${activeColor === color ? 'active' : ''}`}
-            style={{ 
+            className={`color-button ${activeColor === color ? "active" : ""}`}
+            style={{
               backgroundColor: color,
               opacity: activeColor === color ? 1 : 0.7,
-              transform: activeColor === color ? 'scale(1.1)' : 'scale(1)'
+              transform: activeColor === color ? "scale(1.1)" : "scale(1)",
             }}
             onClick={() => handleColorClick(color)}
             disabled={gameState === GAME_STATES.SHOWING || showSequence}
@@ -128,7 +136,8 @@ function App() {
             🚀 Start Game
           </button>
         )}
-        {(gameState === GAME_STATES.GAME_OVER || gameState === GAME_STATES.PLAYING) && (
+        {(gameState === GAME_STATES.GAME_OVER ||
+          gameState === GAME_STATES.PLAYING) && (
           <button className="reset-button" onClick={resetGame}>
             🔄 Reset Game
           </button>
