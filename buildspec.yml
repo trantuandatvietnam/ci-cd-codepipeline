@@ -5,10 +5,18 @@ phases:
     runtime-versions:
       nodejs: 20
     commands:
+      - echo "Installing dependencies..."
       - npm ci
+
   build:
     commands:
+      - echo "Building Vite app..."
       - npm run build
+
+  post_build:
+    commands:
+      - echo "Creating CloudFront invalidation..."
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths "/index.html"
 
 artifacts:
   base-directory: dist
